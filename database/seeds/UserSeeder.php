@@ -1,5 +1,7 @@
 <?php
 
+use App\Email;
+use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -14,22 +16,31 @@ class UserSeeder extends Seeder
     {
         User::truncate();
 
-        User::create( [
-            'email' => 'test@gmail.com' ,
-            'password' => Hash::make( '111111' ) ,
-            'name' => 'Test Name' ,
-        ] );
+        $role_user = Role::where('name', 'User')->first();
+        $role_admin = Role::where('name', 'Admin')->first();
 
-        User::create( [
-            'email' => 'angrysome@gmail.com' ,
-            'password' => Hash::make( '111111' ) ,
-            'name' => 'Angrysome' ,
-        ] );
+        $user = new User();
+        $user->email = 'test@gmail.com';
+        $user->password = Hash::make( '111111' );
+        $user->name = 'Test Name';
+        $user->save();
+        $user->roles()->attach($role_user);
+        $user->emails()->attach(Email::find(random_int(1, 20)));
 
-        User::create( [
-            'email' => 'angrysome@mail.ru' ,
-            'password' => Hash::make( '111111' ) ,
-            'name' => 'Lol Kek' ,
-        ] );
+        $user = new User();
+        $user->email = 'angrysome@gmail.com';
+        $user->password = Hash::make( '111111' );
+        $user->name = 'Angrysome';
+        $user->save();
+        $user->roles()->attach($role_admin);
+        $user->emails()->attach(Email::find(random_int(1, 20)));
+
+        $user = new User();
+        $user->email = 'angrysome@mail.ru';
+        $user->password = Hash::make( '111111' );
+        $user->name = 'Lol Kek';
+        $user->save();
+        $user->roles()->attach($role_user);
+        $user->emails()->attach(Email::find(random_int(1, 20)));
     }
 }
