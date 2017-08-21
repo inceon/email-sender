@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.main')
 
 @section('content')
 <div class="container">
@@ -19,45 +19,32 @@
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="input-field">
+                            <label for="email" class="{{ old('email') ? ' active' : '' }}">E-Mail Address</label>
+                            <input id="email" type="email" class="{{ $errors->has('email') ? 'invalid' : '' }}" name="email" value="{{ $email or old('email') }}" required autofocus>
+                            @if ($errors->has('email'))
+                                <div class="error">{{ $errors->first('email') }}</div>
+                            @endif
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="input-field">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                <input id="password" type="password" class="{{ $errors->has('password') ? 'invalid' : '' }}" name="password" required>
+                                @if ( $errors->has('password') )
+                                    <div class="error">{{ $errors->first('password') }}</div>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                        <div class="input-field">
+                            <label for="password-confirm">Confirm Password</label>
+                            <input id="password-confirm" type="password" class="{{ $errors->has('password_confirmation') ? 'invalid' : '' }}" name="password_confirmation" required>
 
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            @if ($errors->has('password_confirmation'))
+                                <div class="error">{{ $errors->first('password_confirmation') }}</div>
+                            @endif
                         </div>
 
                         <div class="form-group">

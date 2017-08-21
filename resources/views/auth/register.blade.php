@@ -28,7 +28,7 @@
 
                         <div class="input-field">
                             <label for="password">Пароль</label>
-                            <input id="password" type="password" class="validate" name="password" required>
+                            <input id="password" type="password" class="{{ $errors->has('password') ? 'invalid' : '' }}" name="password" required>
                             @if ( $errors->has('password') )
                                 <div class="error">{{ $errors->first('password') }}</div>
                             @endif
