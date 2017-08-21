@@ -10,54 +10,33 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="input-field">
+                            <label for="name" class="{{ old('name') ? ' active' : '' }}">Имя</label>
+                            <input id="name" type="text" class="{{ $errors->has('name') ? 'invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            @if ( $errors->has('name') )
+                                <div class="error">{{ $errors->first('name') }}</div>
+                            @endif
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="input-field">
+                            <label for="email" class="{{ old('email') ? ' active' : '' }}">E-Mail адресс</label>
+                            <input id="email" type="email" class="{{ $errors->has('email') ? 'invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                            @if ( $errors->has('email') )
+                                <div class="error">{{ $errors->first('email') }}</div>
+                            @endif
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="input-field">
+                            <label for="password">Пароль</label>
+                            <input id="password" type="password" class="validate" name="password" required>
+                            @if ( $errors->has('password') )
+                                <div class="error">{{ $errors->first('password') }}</div>
+                            @endif
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
+                            <label for="password-confirm">Подтвердите пароль</label>
+                            <input id="password-confirm" type="password" class="validate" name="password_confirmation" required>
                         </div>
 
                         <div class="form-group">

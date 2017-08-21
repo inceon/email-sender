@@ -1,3 +1,10 @@
 .nav-wrapper {
     padding: 0 10px;
 }
+
+div.error {
+    color: rgb(244, 67, 54);
+    margin-top: -15px;
+    padding: 0;
+    font-size: 0.9em;
+}
