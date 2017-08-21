@@ -11,10 +11,17 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('index');
+    $user = Auth::user();
+    return view('index', ['user' => $user]);
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', function (){
+    Auth::logout();
+    return redirect('/');
+});
