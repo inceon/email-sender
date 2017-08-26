@@ -39,7 +39,12 @@
                             <td>
                                 <button class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></button>
                                 &nbsp;
-                                <button class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></button>
+                                <form method="POST" action="email/{{ $email->id }}" class="btn-floating">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <input name="id" type="hidden" value="{{ $email->id }}">
+                                    <button type="submit" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

@@ -11,4 +11,10 @@ class Email extends Model
     public function users() {
         return $this->belongsToMany(User::class, 'users__emails');
     }
+
+    public function delete() {
+        $this->users()->detach();
+
+        return parent::delete();
+    }
 }
