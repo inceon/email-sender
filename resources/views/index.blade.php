@@ -53,19 +53,18 @@
                             <tr v-else>
                                 <td>{{ $email->email }}</td>
                                 <td>
-                                    <button v-on:click="change({{ $email->id }})"
+                                    <button type="button"
+                                            v-on:click="change({{ $email->id }})"
                                             class="btn-floating waves-effect waves-light green">
                                         <i class="material-icons">edit</i>
                                     </button>
 
                                     &nbsp;
-
-                                    <form method="POST" action="email/{{ $email->id }}" class="btn-floating">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <input name="id" type="hidden" value="{{ $email->id }}">
-                                        <button type="submit" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></button>
-                                    </form>
+                                    <button type="button"
+                                            v-on:click="deleteEmail({{ $email->id }}, '{{ csrf_token() }}')"
+                                            class="btn-floating waves-effect waves-light red">
+                                        <i class="material-icons">delete</i>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

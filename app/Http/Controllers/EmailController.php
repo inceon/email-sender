@@ -63,7 +63,5 @@ class EmailController extends Controller
     public function destroy($id)
     {
         Email::destroy($id);
-
-        return redirect('/');
     }
 }

@@ -11,6 +11,21 @@ var app = new Vue({
                 this.forms[id] = !this.forms[id];
             }
             this.$forceUpdate();
+        },
+
+        deleteEmail: function (id, token) {
+            console.log(id);
+            this.$http
+                .delete('email/' + id, {
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    }
+                })
+                .then(response => {
+
+                    location.reload();
+
+                });
         }
     }
 })
