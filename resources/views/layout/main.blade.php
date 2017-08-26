@@ -25,6 +25,7 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="http://materializecss.com/dist/js/materialize.js"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>

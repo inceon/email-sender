@@ -23,5 +23,7 @@ Route::get('/logout', function (){
 });
 
 Route::resource('email', 'EmailController', ['only' => [
-    'create', 'store', 'show', 'update', 'destroy'
+    'store', 'destroy'
 ]]);
+
+Route::put('email', 'EmailController@update')->name('email/{email}');
