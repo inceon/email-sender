@@ -3,7 +3,7 @@
         <a href="/" class="brand-logo">Email-Sender</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
-                @if ($user->hasRole('Admin'))
+                @if (Auth::user()->hasRole('Admin'))
                     <li>
                         <a class="dropdown-button" href="#!" data-activates="admin-dropdown">
                             Админка

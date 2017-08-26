@@ -24,4 +24,20 @@ class UsersController extends Controller
             'users' => $users
         ]);
     }
+
+    public function edit($id) {
+
+        $user = User::find($id);
+
+        return view('admin.user_edit', [
+            'user' => $user
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+
+        return redirect('/admin/users');
+    }
 }

@@ -27,6 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function delete() {
+        $this->emails()->detach();
+        $this->roles()->detach();
+
+        return parent::delete();
+    }
+
     public function hasAnyRole($roles)
     {
         if (is_array($roles)) {

@@ -34,4 +34,6 @@ Route::group([
     'roles' => 'Admin'
 ], function () {
     Route::get('users', 'UsersController@index')->name('admin.users');
+    Route::delete('users/{user}', 'UsersController@destroy')->name('admin.user.delete');
+    Route::get('users/{user}/edit', 'UsersController@edit')->name('admin.user.edit');
 });

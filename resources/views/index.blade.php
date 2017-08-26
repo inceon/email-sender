@@ -9,7 +9,7 @@
             @include('auth.login')
 
         @else
-            <h5 class="center">Has role: {{ $user->hasRole('Admin') ? 'Admin' : 'User' }}</h5>
+            <h5 class="center">Has role: {{ Auth::user()->hasRole('Admin') ? 'Admin' : 'User' }}</h5>
             <form action="email" method="POST">
 
                 {{ csrf_field() }}
