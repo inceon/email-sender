@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col m6 offset-m3">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <h4 class="panel-heading center">Register</h4>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -34,17 +34,15 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
+                        <div class="input-field">
                             <label for="password-confirm">Подтвердите пароль</label>
                             <input id="password-confirm" type="password" class="validate" name="password_confirmation" required>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
+                        <div class="col m6 offset-m3">
+                            <button type="submit" class="btn btn-primary">
+                                Register
+                            </button>
                         </div>
                     </form>
                 </div>

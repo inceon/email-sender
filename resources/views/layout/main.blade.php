@@ -16,7 +16,7 @@
 
     @include('layout.menu')
 
-    <div class="container">
+    <div>
 
         @yield('content')
 

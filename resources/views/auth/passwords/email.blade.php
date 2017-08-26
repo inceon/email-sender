@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col m6 offset-m3">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <h4 class="panel-heading center">Reset Password</h4>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -24,12 +24,10 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
+                        <div class="col m6 offset-m3">
+                            <button type="submit" class="btn btn-primary">
+                                Send Password Reset Link
+                            </button>
                         </div>
                     </form>
                 </div>
