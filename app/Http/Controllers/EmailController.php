@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Email;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmailController extends Controller
 {
@@ -34,7 +36,16 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $email = new Email;
+        $user = Auth::user();
+
+        $email->email = $request->email;
+        $email->save();
+
+
+        $user->emails()->attach($email);
+
+        return redirect('/');
     }
 
     /**
@@ -68,6 +79,6 @@ class EmailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Email::destroy($id);
     }
 }

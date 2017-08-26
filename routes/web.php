@@ -13,13 +13,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    $user = Auth::user();
-    return view('index', [
-        'user' => $user,
-        'emails' => Auth::check() ? $user->emails()->get()->all() : null
-    ]);
-});
+Route::get('/', 'MainController@index')->name('index');
 
 Auth::routes();
 
