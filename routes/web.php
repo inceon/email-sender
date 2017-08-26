@@ -26,4 +26,12 @@ Route::resource('email', 'EmailController', ['only' => [
     'store', 'destroy'
 ]]);
 
-Route::put('email', 'EmailController@update')->name('email/{email}');
+Route::put('email', 'EmailController@update')->name('email.update');
+
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'roles'],
+    'roles' => 'Admin'
+], function () {
+    Route::get('users', 'UsersController@index')->name('admin.users');
+});

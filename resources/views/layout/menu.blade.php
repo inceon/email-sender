@@ -29,7 +29,7 @@
 
         <!-- Dropdown Structure -->
         <ul id="admin-dropdown" class="dropdown-content">
-            <li><a href="#!">Пользователи</a></li>
+            <li><a href="{{ route('admin.users') }}">Пользователи</a></li>
             <li><a href="#!">Емейлы</a></li>
         </ul>
     </div>
