@@ -9,6 +9,7 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>E-mail</th>
+                <th>Роль</th>
                 <th>Действия</th>
             </tr>
             </thead>
@@ -24,6 +25,9 @@
                         </td>
                         <td>
                             {{ $user->email }}
+                        </td>
+                        <td>
+                            {{ $user->getRoles() }}
                         </td>
                         <td>
                             <a class="btn-floating waves-effect waves-light green"

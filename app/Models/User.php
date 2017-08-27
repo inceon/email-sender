@@ -27,6 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getRoles() {
+        $roles = array_map(function ($el){
+            return $el->name;
+        }, $this->roles()->get()->all());
+
+        return implode(',', $roles);
+
+    }
+
     public function delete() {
         $this->emails()->detach();
         $this->roles()->detach();
