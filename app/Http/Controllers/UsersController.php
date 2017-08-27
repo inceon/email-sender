@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -24,7 +26,6 @@ class UsersController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
-            'roles' => 'required'
         ]);
     }
 
@@ -56,17 +57,27 @@ class UsersController extends Controller
         $user->update($request->all());
         $user->save();
 
-        // remove all role and set new
-        $user->roles()->detach();
+        if (isset($request->roles)) {
+            // remove all role and set new
+            $user->roles()->detach();
 
-        foreach($request->roles as $role) {
-            $user->roles()->attach(
+            foreach ($request->roles as $role) {
+                $user->roles()->attach(
                     Role::where('name', $role)->first()
                 );
+            }
         }
 
-        return redirect('/admin/users');
+        return Redirect::back();
 
+    }
+
+    public function profile() {
+        $user = Auth::user();
+
+        return view('admin.user_edit', [
+            'user' => $user
+        ]);
     }
 
     public function destroy($id)

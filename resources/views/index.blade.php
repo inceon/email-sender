@@ -10,7 +10,7 @@
 
         @else
             <h5 class="center">Has role: {{ Auth::user()->hasRole('Admin') ? 'Admin' : 'User' }}</h5>
-            <form action="email" method="POST">
+            <form action="{{ route('email.store') }}" method="POST">
 
                 {{ csrf_field() }}
 
