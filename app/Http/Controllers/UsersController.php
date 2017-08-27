@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +24,7 @@ class UsersController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            'roles' => 'required'
         ]);
     }
 
@@ -37,9 +39,11 @@ class UsersController extends Controller
     public function edit($id) {
 
         $user = User::find($id);
+        $roles = Role::all();
 
         return view('admin.user_edit', [
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles
         ]);
     }
 
@@ -51,6 +55,15 @@ class UsersController extends Controller
 
         $user->update($request->all());
         $user->save();
+
+        // remove all role and set new
+        $user->roles()->detach();
+
+        foreach($request->roles as $role) {
+            $user->roles()->attach(
+                    Role::where('name', $role)->first()
+                );
+        }
 
         return redirect('/admin/users');
 

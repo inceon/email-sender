@@ -32,7 +32,7 @@ class User extends Authenticatable
             return $el->name;
         }, $this->roles()->get()->all());
 
-        return implode(',', $roles);
+        return implode(', ', $roles);
 
     }
 

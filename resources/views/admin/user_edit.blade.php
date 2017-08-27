@@ -38,7 +38,27 @@
                             @endif
                         </div>
 
-                        <div class="col m6 offset-m3">
+                        <div>
+                            @foreach($roles as $key => $role)
+                                <p>
+                                    <input type="checkbox"
+                                           id="role{{ $key }}"
+                                           name="roles[]"
+                                           value="{{ $role->name }}"
+                                           {{ $user->hasRole($role->name) ? 'checked' : ''}}
+                                           class="filled-in"
+                                    />
+                                    <label for="role{{ $key }}">{{ $role->name }}</label>
+                                </p>
+                            @endforeach
+                            @if ( $errors->has('roles') )
+                                <p>
+                                    <div class="error">{{ $errors->first('roles') }}</div>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="input-field col m6 offset-m3">
                             <button type="submit" class="btn btn-primary">
                                 Обновить
                             </button>
