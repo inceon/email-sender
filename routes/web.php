@@ -21,7 +21,6 @@ Route::get('/logout', 'MainController@logout')->name('logout');
 Route::resource('email', 'EmailController', ['only' => [
     'store', 'destroy'
 ]]);
-
 Route::put('email', 'EmailController@update')->name('email.update');
 
 Route::group([
