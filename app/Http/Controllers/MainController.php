@@ -13,4 +13,10 @@ class MainController extends Controller
             'emails' => Auth::check() ? $user->emails()->get()->all() : null
         ]);
     }
+
+    function logout(){
+        Auth::logout();
+
+        return redirect('/');
+    }
 }

@@ -13,14 +13,10 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', 'MainController@index')->name('index');
-
 Auth::routes();
 
-Route::get('/logout', function (){
-    Auth::logout();
-    return redirect('/');
-});
+Route::get('/', 'MainController@index')->name('index');
+Route::get('/logout', 'MainController@logout')->name('logout');
 
 Route::resource('email', 'EmailController', ['only' => [
     'store', 'destroy'
@@ -36,4 +32,5 @@ Route::group([
     Route::get('users', 'UsersController@index')->name('admin.users');
     Route::delete('users/{user}', 'UsersController@destroy')->name('admin.user.delete');
     Route::get('users/{user}/edit', 'UsersController@edit')->name('admin.user.edit');
+    Route::put('users/{user}', 'UsersController@update')->name('admin.user.update');
 });
