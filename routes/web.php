@@ -23,6 +23,8 @@ Route::resource('email', 'EmailController', ['only' => [
 ]]);
 Route::put('email', 'EmailController@update')->name('email.update');
 Route::get('profile', 'UsersController@profile')->middleware('auth')->name('profile');
+Route::get('sender', 'SenderController@index')->middleware('auth')->name('sender');
+Route::post('sender', 'SenderController@send')->middleware('auth')->name('sender.send');
 
 Route::group([
     'prefix' => 'admin',

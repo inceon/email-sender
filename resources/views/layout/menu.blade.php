@@ -12,6 +12,9 @@
                     </li>
                 @endif
                 <li>
+                    <a href="{{ url('/sender') }}">Рассылка</a>
+                </li>
+                <li>
                     <a href="{{ url('/profile') }}">Профиль</a>
                 </li>
                 <li>
