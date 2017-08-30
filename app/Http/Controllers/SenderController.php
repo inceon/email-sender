@@ -19,9 +19,9 @@ class SenderController extends Controller
 
     public function send(Request $request){
 
-        dd(Mail::to($request->emails)
-            ->queue(new Sender($request->template)));
+        Mail::to($request->emails)
+            ->queue(new Sender($request->template));
 
-
+        return redirect()->back()->with('data', 'Сообщения успешно отправлены');
     }
 }

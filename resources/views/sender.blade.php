@@ -3,6 +3,13 @@
 @section('content')
 
     <div class="row">
+
+        @if (session()->has('data'))
+            <div class="card-panel black-text green accent-3 col m8 offset-m2 center" style="padding: 10px">
+                {{ session('data') }}
+            </div>
+        @endif
+
         <form action="{{ route('sender.send') }}" method="POST" class="form-horizontal col m8 offset-m2">
 
             {{ csrf_field() }}

@@ -1,5 +1,5 @@
 <p>
-    {!! html_entity_decode($template) !!}
+    {!! $template !!}
 </p>
 <p style="text-align: center">
     Copyright (c) 2017
