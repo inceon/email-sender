@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Sender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class SenderController extends Controller
 {
@@ -16,8 +18,10 @@ class SenderController extends Controller
     }
 
     public function send(Request $request){
-        dd($request->all());
 
-        return true;
+        dd(Mail::to($request->emails)
+            ->queue(new Sender($request->template)));
+
+
     }
 }
